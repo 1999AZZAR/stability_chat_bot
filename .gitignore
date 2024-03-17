@@ -3,3 +3,4 @@ web/__pycache__/
 web/.env
 web/datalog/*.db
 web/static/image/*.png
+.vscode/
