@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chat Bot Interface</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <!-- css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- js -->
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div id="main">
+        <!-- side panel begun -->
+        <div id="side-panel"></div>
+        <!-- side panel ended -->
+
+        <!-- chat container begun -->
+        <div id="chat-container">
+            <!-- history -->
+            <div id="chat-history">
+                <div id="loading-indicator" class="loading-indicator"></div>
+            </div>
+            <!-- history end -->
+
+            <!-- input -->
+            <div id="input-area">
+                <input type="text" name="honeypot" style="display:none;">
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
+            </div>
+            <!-- input end -->
+        </div>
+        <!-- chat container ended -->
+
+        <!-- how to begun -->
+        <div id="how-to"></div>
+        <!-- how to ended -->
+    </div>
+</body>
+</html>
