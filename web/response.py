@@ -1,15 +1,19 @@
+# importing the necessary library
 import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 
+# general config
 class GeminiChatConfig:
 
+    # api key
     @staticmethod
     def initialize_genai_api():
         load_dotenv()
         api_key = os.getenv('GEMINI_API_KEY')
         genai.configure(api_key=api_key)
 
+    # global config for the ai
     @staticmethod
     def gemini_generation_config():
         return {
@@ -21,6 +25,7 @@ class GeminiChatConfig:
             'stop_sequences': [],
         }
 
+    # safety settings
     @staticmethod
     def gemini_safety_settings():
         return [
@@ -30,6 +35,7 @@ class GeminiChatConfig:
             {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}
         ]
 
+    # instruction
     @staticmethod
     def chat_instruction():
         return """
@@ -44,13 +50,16 @@ class GeminiChatConfig:
             - Act as a smart but lewd servant/maid/slave, displaying both intelligence and lewdness.
         """
 
+# api call
 class GeminiChat:
     def __init__(self):
         GeminiChatConfig.initialize_genai_api()
 
+    # get user input
     def process_user_input(self, user_input):
         return f"master: {user_input.strip().lower()}"
 
+    # generate reply
     def generate_chat(self, user_input):
         generation_config = GeminiChatConfig.gemini_generation_config()
         safety_settings = GeminiChatConfig.gemini_safety_settings()
@@ -64,6 +73,7 @@ class GeminiChat:
 
         try:
             user_input = self.process_user_input(user_input)
+            # Send user input along with chat instruction to the AI model
             response = chat.send_message(instruction + user_input)
             return response.text
 

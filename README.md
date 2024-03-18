@@ -1,4 +1,4 @@
-**Stability Chat Bot**
+# Stability Chat Bot
 
 **Overview:**
 
@@ -28,7 +28,7 @@ This Flask application serves as a chat bot interface integrated with an image g
 3. Obtain API keys for the Stability AI API and the Gemini AI API.
 4. Create a `.env` file in the web directory and add the API keys:
 
-    ```
+    ```text
     STABILITY_API_KEY=your_stability_api_key
     GEMINI_API_KEY=your_gemini_api_key
     ```

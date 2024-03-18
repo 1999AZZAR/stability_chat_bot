@@ -6,14 +6,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# ...
 class Image_gen:
 
+    # ...
     def add_watermark(self, input_image_path, output_image_path, watermark_image_path, transparency=25):
         if watermark_image_path is None or not os.path.exists(watermark_image_path):
             original_image = Image.open(input_image_path)
             original_image.save(output_image_path)
             return
 
+        # ...
         try:
             original_image = Image.open(input_image_path)
             watermark = Image.open(watermark_image_path)
@@ -29,10 +32,12 @@ class Image_gen:
             alpha = ImageEnhance.Brightness(alpha).enhance(transparency / 100.0)
             watermark.putalpha(alpha)
             image_with_watermark.save(output_image_path)
+        # ...
         except Exception as e:
             print(f"Error adding watermark: {e}")
             original_image.save(output_image_path)
 
+    # Method to generate an image based on a prompt using an AI model
     def generate_image(self, prompt):
         api_key = os.getenv('STABILITY_API_KEY')
         common_params = {
@@ -58,6 +63,7 @@ class Image_gen:
             ],
         }
 
+        # ...
         try:
             response = requests.post(
                 "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image",
@@ -69,6 +75,7 @@ class Image_gen:
                 json=common_params,
             )
 
+            # ...
             if response.status_code != 200:
                 raise Exception("Non-200 response: " + str(response.text))
             data = response.json()            
@@ -76,6 +83,7 @@ class Image_gen:
             if not artifacts:
                 raise Exception("No artifacts returned by the API")   
 
+            # ...
             output_directory = "./web/static/image"
             if not os.path.exists(output_directory):
                 os.makedirs(output_directory)
@@ -83,12 +91,13 @@ class Image_gen:
             generated_image_path = f'{output_directory}/{file_name}'
             with open(generated_image_path, "wb") as f:
                 f.write(base64.b64decode(data["artifacts"][0]["base64"]))
-            
+
+            # Method to generate an image based on a prompt using an AI model
             watermark_image_path = './web/static/logo.png' 
             output_with_watermark_path = generated_image_path
             self.add_watermark(generated_image_path, output_with_watermark_path, watermark_image_path, transparency=25)
-
             return file_name
+        # ...
         except Exception as e:
             print(f"Error in generate_image: {e}")
             return None
