@@ -36,21 +36,16 @@ def delete_old_images():
     c = conn.cursor()
     image_dir = "./web/static/image"
     if os.path.exists(image_dir):
-        # Get the current time
         now = time.time()
-        # Calculate the time threshold (30 minutes ago)
-        threshold = now - 1800
-        # Iterate through the images in the database
         for row in c.execute("SELECT filename, creation_time FROM images"):
             filename, creation_time = row
+            # Convert creation_time to a numeric timestamp
             creation_time = time.mktime(time.strptime(creation_time, "%Y-%m-%d %H:%M:%S"))
             file_path = os.path.join(image_dir, filename)
             if os.path.isfile(file_path):
-                # Check if the creation time is older than the threshold
-                if creation_time < threshold:
-                    # Delete the image file
+                # Check if file is older than 1/2 hour
+                if now - creation_time > 1800:
                     os.remove(file_path)
-                    # Remove the entry from the database
                     c.execute("DELETE FROM images WHERE filename=?", (filename,))
                     conn.commit()
     conn.close()
