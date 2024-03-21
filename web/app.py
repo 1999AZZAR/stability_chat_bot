@@ -1,3 +1,4 @@
+# importing library
 import os
 import time
 from datetime import datetime, timedelta
@@ -78,7 +79,6 @@ def handle_user_input():
     else:
         response = chat_app.generate_chat(user_input)
         return jsonify({'bot_response': response})
-
 
 # Main function to run the app
 if __name__ == '__main__':
