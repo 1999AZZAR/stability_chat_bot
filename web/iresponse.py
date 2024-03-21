@@ -54,22 +54,34 @@ class ImageGenerator:
             "samples": 1,
             "steps": 50,
             "cfg_scale": 15.5,
-            "clip_guidance_preset": "FAST_GREEN",
+            "clip_guidance_preset": "FAST_BLUE",
             "height": 1024,
             "width": 1024,
             "text_prompts": [
                 {
-                    "text": prompt,
+                    "text"  : prompt, 
                     "weight": 1
                 },
                 {
-                    "text": "The artwork showcases excellent anatomical accuracy, portraying a clear, complete, and aesthetically pleasing depiction. It meticulously renders well-proportioned and meticulously polished details, resulting in a unique and harmoniously balanced composition. The high-resolution image is devoid of any damage and flawlessly crafted, conveying a vibrant and lifelike appearance, free from any abnormalities or imperfections. The mastery of the artist is evident in the skillful framing and lifelike portrayal of features, including finely drawn facial expressions and hands. The absence of signatures enhances its seamless and authentic quality, while the precise depiction of straight fingers further enhances its overall allure.",
-                    "weight": 0.4
+                    "text"  :   "The artwork showcases excellent anatomy with a clear, complete, and appealing "
+                                "depiction. It has well-proportioned and polished details, presenting a unique "
+                                "and balanced composition. The high-resolution image is undamaged and well-formed, "
+                                "conveying a healthy and natural appearance without mutations or blemishes. The "
+                                "positive aspect of the artwork is highlighted by its skillful framing and realistic "
+                                "features, including a well-drawn face and hands. The absence of signatures contributes "
+                                "to its seamless and authentic quality, and the depiction of straight fingers adds to "
+                                "its overall attractiveness.",
+                    "weight": 0.35
                 },
                 {
-                    "text": "The artwork features two faces and two heads, exhibiting poor anatomical accuracy and a blurry, cloned appearance. It suffers from a cropped image, resulting in cut-off and deformed limbs, including disconnected limbs and disturbingly disfigured hands. The presence of duplicated artifacts and extra fingers or limbs detracts from its visual appeal. Additionally, floating limbs and irregular proportions contribute to its unappealing appearance. The artwork is marred by low resolution, mangled details, and mutated or mutilated features, such as twisted fingers and malformed hands. The inclusion of multiple heads and the absence of proper framing and signatures further diminish its quality, giving it a surreal and unsettling quality.",
+                    "text"  :   "2 faces, 2 heads, bad anatomy, blurry, cloned face, cropped image, cut-off, deformed hands, "
+                                "disconnected limbs, disgusting, disfigured, draft, duplicate artifact, extra fingers, extra limb, "
+                                "floating limbs, gloss proportions, grain, gross proportions, long body, long neck, low-res, mangled, "
+                                "malformed, malformed hands, missing arms, missing limb, morbid, mutation, mutated, mutated hands, "
+                                "mutilated, mutilated hands, multiple heads, negative aspect, out of frame, poorly drawn, poorly drawn "
+                                "face, poorly drawn hands, signatures, surreal, tiling, twisted fingers, ugly",
                     "weight": -1
-                }
+                },
             ],
         }
 
