@@ -3,8 +3,8 @@ import os
 import time
 from datetime import datetime, timedelta
 from flask import Flask, render_template, request, jsonify
-from response import GeminiChat
-from iresponse import ImageGenerator
+from gemini_res import GeminiChat
+from stability_res import ImageGenerator
 import sqlite3
 
 # global initialization
